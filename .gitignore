@@ -1,8 +1,9 @@
 node_modules/
+npm-debug.log
 
 # ide
 .vscode/
 
-#
-public/img
-logs/
+config/*
+!config/default.*
+coverage
