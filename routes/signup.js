@@ -61,6 +61,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
     .then(function(result) {
       user = result.ops[0]
       delete user.password
+      req.session.user = user
       req.flash('success', '注册成功')
       res.redirect('/posts')
     })

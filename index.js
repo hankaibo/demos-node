@@ -26,7 +26,8 @@ app.use(
     },
     store: new MongoStore({
       url: config.mongodb
-    })
+    }),
+    resave: true
   })
 )
 // flashk中间件
