@@ -1,5 +1,8 @@
 node_modules/
 
+# ide
 .vscode/
 
+#
 public/img
+logs/

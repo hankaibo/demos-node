@@ -6,6 +6,8 @@ const flash = require('connect-flash')
 const config = require('config-lite')(__dirname)
 const routes = require('./routes')
 const pkg = require('./package')
+const winston = require('winston')
+const expressWinston = require('express-winston')
 
 const app = express()
 
@@ -53,7 +55,43 @@ app.use(function(req, res, next) {
   next()
 })
 // 路由
+app.use(
+  expressWinston.logger({
+    winstonInstance: winston.createLogger({
+      transports: [
+        new winston.transports.Console({
+          json: true,
+          colorize: true
+        }),
+        new winston.transports.File({
+          filename: 'logs/success.log'
+        })
+      ]
+    }),
+    exceptionToMeta: function(err) {
+      return err
+    }
+  })
+)
 routes(app)
+app.use(
+  expressWinston.errorLogger({
+    winstonInstance: winston.createLogger({
+      transports: [
+        new winston.transports.Console({
+          json: true,
+          colorize: true
+        }),
+        new winston.transports.File({
+          filename: 'logs/error.log'
+        })
+      ]
+    }),
+    exceptionToMeta: function(err) {
+      return err
+    }
+  })
+)
 
 app.use(function(err, req, res, next) {
   console.error(err)
