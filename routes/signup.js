@@ -1,10 +1,10 @@
-const fs = require('fs')
+const fs = require('mz/fs')
 const path = require('path')
 const sha1 = require('sha1')
 const express = require('express')
 const router = express.Router()
 
-const UserModel = require('../modules/users')
+const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
 
 // GET /signup
@@ -41,7 +41,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
       throw new Error('两次输入密码不一致。')
     }
   } catch (e) {
-    fs.unlink(req.fields.avatar.path)
+    fs.unlink(req.files.avatar.path)
     req.flash('error', e.message)
     return res.redirect('/signup')
   }
@@ -66,7 +66,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
       res.redirect('/posts')
     })
     .catch(function(e) {
-      fs.unlink(req.fields.avatar.path)
+      fs.unlink(req.files.avatar.path)
       if (e.message.match('duplicate key')) {
         req.flash('error', '用户名已被占用')
         return res.redirect('/signup')

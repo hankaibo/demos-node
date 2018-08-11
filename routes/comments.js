@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const checkLogin = require('../middlewares/check').checkLogin
-const CommentModel = require('../modules/comments')
+const CommentModel = require('../models/comments')
 
 // POST /comments
 router.post('/', checkLogin, function(req, res, next) {

@@ -2,7 +2,7 @@ const sha1 = require('sha1')
 const express = require('express')
 const router = express.Router()
 
-const UserModel = require('../modules/users')
+const UserModel = require('../models/users')
 const checkNotLogin = require('../middlewares/check').checkNotLogin
 
 // GET /signin

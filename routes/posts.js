@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const PostModel = require('../modules/posts')
-const CommentModel = require('../modules/comments')
 const checkLogin = require('../middlewares/check').checkLogin
+const PostModel = require('../models/posts')
+const CommentModel = require('../models/comments')
 
 router.get('/', function(req, res, next) {
   const author = req.query.author
