@@ -56,7 +56,7 @@ router.get('/create', checkLogin, function(req, res, next) {
 })
 
 // GET /posts/:postId
-router.get('/:postId', checkLogin, function(req, res, next) {
+router.get('/:postId', function(req, res, next) {
   const postId = req.params.postId
 
   Promise.all([
