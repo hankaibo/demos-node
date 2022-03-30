@@ -29,7 +29,7 @@
     "express-formidable": "^1.0.0",
     "express-session": "^1.15.6",
     "express-winston": "^2.6.0",
-    "marked": "^0.4.0",
+    "marked": "^4.0.10",
     "moment": "^2.22.2",
     "mongolass": "^4.3.4",
     "mz": "^2.7.0",
